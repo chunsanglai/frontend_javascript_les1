@@ -72,3 +72,57 @@ const departments = {
 }
 
 console.log(departments);
+console.log("De afdeling Sales heeft " + departments.sales.numberOfEmployees + " medewerkers");
+console.log("Marketing is een leuke afdeling om te werken. " + departments.marketing.description + ".");
+console.log("De afdeling Customer Service heeft " + departments["customer-service"].numberOfEmployees + " medewerkers");
+console.log("Sales is een uitdagende afdeling om te werken als Verkoopmanager. " + departments.sales.jobs[1].description);
+
+const userInput = prompt("Over welke afdeling wil je meer informatie? Kies uit: [marketing / sales / customer-service]");
+console.log(userInput.toLowerCase());
+
+switch (userInput.toLowerCase()) {
+    case "marketing":
+        console.log("Je koos " + userInput.toLowerCase() + ". " + departments[userInput].description);
+        break;
+    case "sales":
+        console.log("Je koos " + userInput.toLowerCase() + ". " + departments[userInput].description);
+        break;
+    case "customer-service":
+        console.log("Je koos " + userInput.toLowerCase() + ". " + departments[userInput].description);
+        break;
+    default:
+        console.error("Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.");
+        break;
+}
+
+console.log(userInput + " is een leuke afdeling om te werken. Er werken op dit moment " + departments[userInput].numberOfEmployees + " medewerkers.");
+
+const department = prompt("Je koos " + userInput + ". Over welke functie wil je meer weten? Voer een getal tussen 0 en 3 in. \n 0 = " + departments[userInput].jobs[0].title + "\n 1 = " + departments[userInput].jobs[1].title + "\n 2 = " + departments[userInput].jobs[2].title + "\n 3 = " + departments[userInput].jobs[3].title);
+switch (department) {
+    case "0":
+        console.log("Je koos " + departments[userInput].jobs[0].title + ". Een uitdagende rol! " + departments[userInput].jobs[0].description);
+        break;
+    case "1":
+        console.log("Je koos " + departments[userInput].jobs[1].title + ". Een uitdagende rol! " + departments[userInput].jobs[1].description);
+        break;
+    case "2":
+        console.log("Je koos " + departments[userInput].jobs[2].title + ". Een uitdagende rol! " + departments[userInput].jobs[2].description);
+        break;
+    case "3":
+        console.log("Je koos " + departments[userInput].jobs[3].title + ". Een uitdagende rol! " + departments[userInput].jobs[3].description);
+        break;
+    default:
+        console.error("Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.");
+        break;
+}
+
+if (userInput !== "marketing" && userInput !== "sales" && userInput !== "customer-service") {
+    document.getElementById('error-message').textContent = "Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.";
+}
+if (department !== "0" && department !== "1" && department !== "2" && department !== "3") {
+    document.getElementById('error-message').textContent = "Ongeldige keuze. Probeer het opnieuw door de pagina te verversen.";
+}
+
+document.getElementById('role-title').textContent = departments[userInput].jobs[department].title;
+document.getElementById('department-description').textContent = departments[userInput].description;
+document.getElementById('role-description').textContent = departments[userInput].jobs[department].description;
